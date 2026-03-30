@@ -13,7 +13,8 @@ const STYLES = `
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root { --cream: #faf6ef; --ink: #1a1410; --terracotta: #c4622d; --sage: #7a8c6e; --warm-grey: #e8e0d5; --accent: #d4a853; }
   body { background: var(--cream); color: var(--ink); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
-  .app { max-width: 820px; margin: 0 auto; padding: 48px 24px; }
+  html, body { max-width: 100vw; overflow-x: hidden; position: relative; }
+  .app { max-width: 820px; margin: 0 auto; padding: 48px 20px; width: 100%; }
   .header { text-align: center; margin-bottom: 56px; }
   .header-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--terracotta); margin-bottom: 16px; }
   .header h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 6vw, 64px); font-weight: 400; line-height: 1.1; color: var(--ink); margin-bottom: 12px; }
@@ -62,7 +63,27 @@ const STYLES = `
   .recipe-meta { display: flex; gap: 24px; flex-wrap: wrap; }
   .meta-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #7a6f63; }
   .recipe-body { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; }
-  @media (max-width: 600px) { .recipe-body { grid-template-columns: 1fr; } .options-grid { grid-template-columns: 1fr; } }
+ @media (max-width: 600px) {
+  .app { 
+    padding: 32px 16px; 
+  }
+  .recipe-body { 
+    grid-template-columns: 100%; /* Forzamos el ancho completo */
+    gap: 32px;
+  }
+  .options-grid { 
+    grid-template-columns: 1fr; 
+    width: 100%;
+  }
+  .api-key-row {
+    flex-direction: column; /* En móviles muy pequeños, mejor uno bajo otro */
+    align-items: stretch;
+  }
+  .api-link {
+    text-align: center;
+    margin-top: 8px;
+  }
+}
   .recipe-section-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; color: var(--ink); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--warm-grey); }
   .ingredients-list { list-style: none; }
   .ingredients-list li { padding: 8px 0; font-size: 14px; color: var(--ink); border-bottom: 1px solid #f0ebe3; line-height: 1.5; display: flex; gap: 8px; }
