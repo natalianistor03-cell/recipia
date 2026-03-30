@@ -64,26 +64,12 @@ const STYLES = `
   .meta-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #7a6f63; }
   .recipe-body { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; }
  @media (max-width: 600px) {
-  .app { 
-    padding: 32px 16px; 
+  .app { padding: 32px 16px; }
+  .recipe-body { grid-template-columns: 100%; /* Forzamos el ancho completo */ gap: 32px; }
+  .options-grid { grid-template-columns: 1fr; width: 100%; }
+  .api-key-row { flex-direction: column; /* En móviles muy pequeños, mejor uno bajo otro */ align-items: stretch; }
+  .api-link { text-align: center; margin-top: 8px; }
   }
-  .recipe-body { 
-    grid-template-columns: 100%; /* Forzamos el ancho completo */
-    gap: 32px;
-  }
-  .options-grid { 
-    grid-template-columns: 1fr; 
-    width: 100%;
-  }
-  .api-key-row {
-    flex-direction: column; /* En móviles muy pequeños, mejor uno bajo otro */
-    align-items: stretch;
-  }
-  .api-link {
-    text-align: center;
-    margin-top: 8px;
-  }
-}
   .recipe-section-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; color: var(--ink); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--warm-grey); }
   .ingredients-list { list-style: none; }
   .ingredients-list li { padding: 8px 0; font-size: 14px; color: var(--ink); border-bottom: 1px solid #f0ebe3; line-height: 1.5; display: flex; gap: 8px; }
@@ -96,6 +82,12 @@ const STYLES = `
   .tip-box p { font-size: 14px; color: #6b5f52; line-height: 1.6; font-style: italic; }
   .error-box { background: #fff5f2; border: 1px solid #f5c6b8; border-radius: 4px; padding: 16px 20px; margin-top: 16px; font-size: 14px; color: #8b2500; line-height: 1.5; }
   .model-used { font-size: 11px; color: #b5a99b; margin-top: 8px; font-style: italic; }
+  .footer { margin-top: 50px; padding-bottom: 24px; text-align: center; }
+  .footer p { font-size: 12px; color: #b5a99b; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+  .footer p strong { font-size: 18px; color: var(--terracotta); }
+  .footer-links { display: flex; justify-content: center; gap: 20px; }
+  .footer-links a { font-size: 12px; color: var(--terracotta); text-decoration: none; transition: opacity 0.2s; }
+  .footer-links a:hover { opacity: 0.7; }
 `;
 
 function parseRecipe(text) {
@@ -333,6 +325,14 @@ Dificultad: [Fácil/Media/Difícil]
             </div>
           </div>
         )}
+        <footer className="footer">
+          <div className="divider" />
+          <p>© 2026 Recipia — <strong>ꋊ</strong></p>
+          <div className="footer-links">
+            <a href="#">Privacidad</a>
+            <a href="#">Contacto</a>
+          </div>
+        </footer>
       </div>
     </>
   );
